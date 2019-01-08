@@ -27,7 +27,18 @@ def stepGradient(m,b,x,y,learning_rate):
     grad_m = 2*sum(grad_m)/len(x)
     grad_b = 2*sum(grad_b)/len(x)
     
-    return (grad_m,grad_b)
+    m = m+(learning_rate*grad_m)
+    b = b+(learning_rate*grad_b)
+    
+    return (m,b)
+
+def gradientDescentImplementer(initial_m,initial_b,x,y,learning_rate,iterations = 100000):
+    m = initial_m
+    b = initial_b
+    for i in range(iterations):
+        m,b = stepGradient(m,b,x,y,learning_rate)
+        
+    return (m,b)
 
 slope = 5
 intercept = 10
@@ -38,3 +49,6 @@ plt.scatter(x,y)
 
 
 computeError(slope,intercept,x,y)
+stepGradient(3,9,x,y,0.001)
+
+(m,b) = gradientDescentImplementer(3,9,x,y,0.000001)
