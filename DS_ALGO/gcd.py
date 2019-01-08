@@ -14,9 +14,9 @@ def gcd(m,n):
     if (m%n==0):
         return n
     else:
-        return gcd(n,m%n)
+        return gcd(n,m%n) # gcd(m,n) = gcd(n,m%n)
     
-# gcd(m,n) = gcd(n,m%n)
+
         
 if __name__ == '__main__':
     m = int(input("enter 1st number: "))
