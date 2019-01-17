@@ -35,7 +35,7 @@ def BinarySearch(li,val):
 
 if __name__=='__main__':
     
-    #creating 1 to  100 array
+    #creating  to  100 array
     li = np.random.randint(-100,100,90)
     li = np.sort(li)
     li = li.tolist()
