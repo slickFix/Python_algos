@@ -6,6 +6,8 @@ Created on Thu Jan 17 19:11:12 2019
 @author: siddharth
 """
 
+import numpy as np
+
 def BinarySearch(li,val):
     
     i = 0
@@ -34,9 +36,11 @@ def BinarySearch(li,val):
 if __name__=='__main__':
     
     #creating 1 to  100 array
-    li = [i*2 for i in range(1,51)]
+    li = np.random.randint(-100,100,90)
+    li = np.sort(li)
+    li = li.tolist()
     
-    val = int(input("Enter the value between 1 and 100 to search  : "))
+    val = int(input("Enter the value between -100 and 100 to search  : "))
     
     print(BinarySearch(li,val))
     
