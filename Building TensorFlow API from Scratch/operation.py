@@ -13,6 +13,8 @@ path  = os.getcwd()
 import sys
 sys.path.append(path)
 
+from graph import *
+
 class Operation:
     def __init__(self,input_nodes = None):
         self.input_nodes = input_nodes
