@@ -21,5 +21,5 @@ class Graph():
         self.constants = [] 
         
     def as_default(self):
-        global default_graph
+        global _default_graph
         _default_graph = self
