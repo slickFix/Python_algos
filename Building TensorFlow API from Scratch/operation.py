@@ -6,6 +6,13 @@ Created on Thu Jan 31 21:05:57 2019
 @author: siddharth
 """
 
+import os
+os.chdir('/home/siddharth/workspace-python/Python/Building TensorFlow API from Scratch/')
+path  = os.getcwd()
+
+import sys
+sys.path.append(path)
+
 class Operation:
     def __init__(self,input_nodes = None):
         self.input_nodes = input_nodes
