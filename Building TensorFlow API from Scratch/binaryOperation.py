@@ -18,10 +18,50 @@ sys.path.append(path)
 
 from operation import *
 
-from graph import *
 
 class BinaryOperation(Operation):
     def __init__(self,a,b):
         super().__init__([a,b])
         
 
+class Add(BinaryOperation):
+    """ add element wise , a+b """
+    
+    def forward(self,a,b):
+        return a+b
+    
+    def backward(self,a,b):
+        pass
+    
+
+class Multiply(BinaryOperation):
+    """ multiply element wise, a*b """
+    
+    def forward(self,a,b):
+        return a*b
+    
+    def backward(self,a,b):
+        pass
+    
+    
+class Divide(BinaryOperation):
+    """ divide element wise, a/b """
+    
+    def forward(self,a,b):
+        import numpy as np
+        return np.true_divide(a,b)
+    
+    def backward(self,a,b):
+        pass
+    
+class MatMul(BinaryOperation):
+    """ muiltiply two matrices a and b , a*b """
+    
+    def forward(self,a,b):
+        
+        import numpy as np
+        
+        return np.dot(a,b)
+    
+    def backward(self,a,b):
+        pass
