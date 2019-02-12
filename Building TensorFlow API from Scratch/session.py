@@ -22,25 +22,25 @@ from constant import *
 from variable import *
 from operation import *
 
-class Session():
+def topology_sort(operation):
+    ordering = [] 
+    visited_nodes = set()
     
-    def topology_sort(operation):
-        ordering = [] 
-        visited_nodes = set()
+    def recursive_helper(node):
+        if isinstance(node,Operation):
+            for input_node in node.input_nodes:
+                if input_node not in visited_nodes:
+                    recursive_helper(input_node)
+                    
+        visited_nodes.add(node)
+        ordering.append(node)
         
-        def recursive_helper(node):
-            if isinstance(node,Operation):
-                for input_node in node.inputs:
-                    if input_node not in visited_nodes:
-                        recursive_helper(input_node)
-                        
-            visited_nodes.add(node)
-            ordering.append(node)
-            
-        # recursive dfs
-        recursive_helper(operation)
-        
-        return ordering
+    # recursive dfs
+    recursive_helper(operation)
+    
+    return ordering
+
+class Session():
     
     def run(self,operation,feed_dict={}):
         nodes_sorted = topology_sort(operation)
@@ -54,4 +54,4 @@ class Session():
                 inputs = [node.output for node in node.input_nodes]
                 node.output = node.forward(*inputs)
                 
-    return operation.output
+        return operation.output
