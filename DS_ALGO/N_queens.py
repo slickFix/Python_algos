@@ -19,6 +19,9 @@ def initializeBoard(board,n):
     for i in range(2*n-1):
         board['swtone'][i] = 0
 
+def printBoard(board):
+    for row in sorted(board['queen'].keys()):
+        print((row,board['queen'][row]))
 
 if __name__ == '__main__':
     
