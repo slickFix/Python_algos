@@ -34,7 +34,14 @@ def addQueen(i,j,board):
     board['nwtose'][i-j] = 1
     board['swtone'][i+j] = 1
     
-   
+def removeQueen(i,j,board):
+    board['queen'][i]=-1
+    board['row'][i] = 0
+    board['col'][j] = 0
+    board['nwtose'][i-j] = 0
+    board['swtone'][i+j] = 0
+    
+
     
 if __name__ == '__main__':
     
