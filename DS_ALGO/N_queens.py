@@ -26,12 +26,21 @@ def printBoard(board):
 def free(i,j,board):
     return (board['queen'][i]==-1 and board['row'][i]==0 and board['col'][i]==0 \
             and board['nwtose'][i-j]==0 and board['swtone'][i+j]==0)
+
+def addQueen(i,j,board):
+    board['queen'][i] = j
+    board['row'][i] = 1
+    board['col'][j] = 1
+    board['nwtose'][i-j] = 1
+    board['swtone'][i+j] = 1
     
-    
+   
     
 if __name__ == '__main__':
     
     n = input('Enter the number of queens :')
     board = {}
     initializeBoard(board,n)
+    if placeQueens(0,board):
+        printBoard(board)
     
