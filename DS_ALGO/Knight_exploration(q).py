@@ -52,11 +52,13 @@ def explore(s,t,b_size):
     while q !=[]:
         ax,ay = q.pop()
         for (nx,ny) in neighbours((ax,ay),b_size):
-            if !marked_board[nx][ny]:
+            if marked_board[nx][ny] ==0:
                 marked_board[nx][ny] = 1
                 q.insert(0,(nx,ny))
-            
-        
+    if marked_board[tx][ty]==0:
+        return 'Not possible'
+    else:
+        return 'Possible' 
 
 
 if __name__ == '__main__':
@@ -65,5 +67,5 @@ if __name__ == '__main__':
     sx,sy = input('Enter the Knight start position: ').split()
     tx,ty = input('Enter the Knight target position: ').split()
     
-    print('The target postion is possible or not ',explore((sx,sy),(tx,ty),b_size))
+    print('The target postion is possible or not :',explore((int(sx),int(sy)),(int(tx),int(ty)),b_size))
     
