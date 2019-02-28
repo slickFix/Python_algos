@@ -24,11 +24,49 @@ class Li_node:
         
         else:
             self.next.append(val)
+            
+    def insert_first(self,val):
         
+        if self.isempty():
+            self.value = val
+            return
         
+        newnode = Li_node(val)    
+        self.value,newnode.value = newnode.value,self.value
+        self.next,newnode.next  =newnode,self.next
+        
+    def delete(self,val):
+        
+        if self.isempty():
+            return
+        
+        if self.value == val:
+            self.value = None
+            
+            if self.next == None:
+                return
+            else:
+                self.value,self.next.value = self.next.value,self.value
+                self.next,self.next.next  = self.next.next,None
+        else:
+            if self.next!=None:
+                self.next.delete(val)
+                if self.next.value == None: # for the case when val is the last element of list
+                    self.next = None
     
-    
-    
+    def __str__(self):
+        li = []
+        if self.value == None:
+            return str(li)
+        
+        temp = self
+        li.append(temp.value)
+        
+        while(temp.next !=None):
+            temp = temp.next
+            li.append(temp.value)
+        return str(li)
+       
     
 if __name__ == '__main__':
     
