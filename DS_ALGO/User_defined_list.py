@@ -10,6 +10,22 @@ class Li_node:
     def __init__(self,value=None):
         self.value = value
         self.next = None
+        
+    def isempty(self):
+        return (self.value==None)
+    
+    def append(self,val):
+        if self.isempty():
+            self.value = val
+        
+        elif self.next==None:
+            newnode = Li_node(val)
+            self.next = newnode
+        
+        else:
+            self.next.append(val)
+        
+        
     
     
     
