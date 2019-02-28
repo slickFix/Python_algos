@@ -36,7 +36,6 @@ class Li_node:
         self.next,newnode.next  =newnode,self.next
         
     def delete(self,val):
-        
         if self.isempty():
             return
         
@@ -47,7 +46,9 @@ class Li_node:
                 return
             else:
                 self.value,self.next.value = self.next.value,self.value
-                self.next,self.next.next  = self.next.next,None
+                self.next.next,self.next = None,self.next.next 
+                # order matters!!! if self.next is updated 1st then self.next.next points to diff
+                # location than thought of
         else:
             if self.next!=None:
                 self.next.delete(val)
@@ -69,4 +70,16 @@ class Li_node:
        
     
 if __name__ == '__main__':
+    li = Li_node(0)
+    for i in range(1,11):
+        li.append(i)
+        
+    print(li)
     
+    li.delete(3)
+    
+    print(li)
+    
+    li.insert_first(-1)
+    
+    print(li)
