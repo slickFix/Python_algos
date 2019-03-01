@@ -16,3 +16,19 @@ class BST_node:
         else:
             self.left = BST_node()
             self.right = BST_node()
+    
+    def isEmpty(self):
+        if self.value:
+            return False
+        else:
+            return True
+    
+    def inorder(self):
+        if self.value==None:
+            return []
+        
+        else:
+            return self.left.inorder()+[self.value]+self.right.inorder()
+        
+    def __str__(self):
+        return str(self.inorder())
