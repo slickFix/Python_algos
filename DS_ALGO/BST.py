@@ -74,7 +74,7 @@ class BST_node:
             self.right.insert(val)
             
     # Finds the max value
-    def maxVal(self,val):
+    def maxVal(self):
         
         if self.right.value!=None:
             return self.right.maxVal()
@@ -94,7 +94,7 @@ class BST_node:
                 self.right = None
                 self.left = None
             
-            if self.left.isEmpty():
+            elif self.left.isEmpty():
                 self.copyRight()
             else:
                 self.value = self.left.maxVal()
@@ -103,3 +103,25 @@ class BST_node:
         
     def __str__(self):
         return str(self.inorder())
+    
+    
+    
+if __name__ == '__main__':
+    
+    bst = BST_node()
+    for i in [1,3,2,18,7,5,4,22,14]:
+        bst.insert(i)
+        
+    print(bst)
+    
+    bst.insert(17)
+    
+    print(bst)
+    
+    bst.insert(4.5)
+    
+    print(bst)
+    
+    bst.delete(3)
+    
+    print(bst)
