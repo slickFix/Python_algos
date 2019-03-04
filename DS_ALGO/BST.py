@@ -23,12 +23,29 @@ class BST_node:
         else:
             return True
     
+    # Inorder traversal
     def inorder(self):
         if self.value==None:
             return []
         
         else:
             return self.left.inorder()+[self.value]+self.right.inorder()
+    
+    # Checks if val is present in the tree or not
+    def find(self,val):
+        if self.isEmpty():
+            return False
+        
+        if self.value == val:
+            return True
+        
+        elif self.value<val:
+            return self.right.find(val)
+        
+        else:
+            return self.left.find(val)
+        
+            
         
     def __str__(self):
         return str(self.inorder())
