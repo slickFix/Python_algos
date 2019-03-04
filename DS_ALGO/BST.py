@@ -22,12 +22,24 @@ class BST_node:
             return False
         else:
             return True
-    
+        
+    # Checks if the node is leaf or not
+    def isleaf(self):
+        if self.value!=None and self.left.isEmpty() and self.right.isEmpty():
+            return True
+        else:
+            return False
+        
+    # Copies right child values to the current node
+    def copyRight(self):
+        self.value = self.right.value
+        self.left = self.right.left
+        self.right = self.right.right
+        
     # Inorder traversal
     def inorder(self):
         if self.value==None:
-            return []
-        
+            return []     
         else:
             return self.left.inorder()+[self.value]+self.right.inorder()
     
@@ -45,7 +57,49 @@ class BST_node:
         else:
             return self.left.find(val)
         
+    # Insert value to the tree
+    def insert(self,val):
+        if self.isEmpty():
+            self.value = val
+            self.right = BST_node()
+            self.left = BST_node()
+        
+        if self.value == val:
+            return
+        
+        if val < self.value:
+            self.left.insert(val)
             
+        if val> self.value:
+            self.right.insert(val)
+            
+    # Finds the max value
+    def maxVal(self,val):
+        
+        if self.right.value!=None:
+            return self.right.maxVal()
+        else:
+            return self.value
+        
+      
+    # Delete value from the tree
+    def delete(self,val):
+        if val < self.value:
+            self.left.delete(val)
+        if val > self.value:
+            self.right.delete(val)
+        if self.value == val:
+            if self.isleaf():
+                self.value = None
+                self.right = None
+                self.left = None
+            
+            if self.left.isEmpty():
+                self.copyRight()
+            else:
+                self.value = self.left.maxVal()
+                self.left.delete(self.left.maxVal())
+        
         
     def __str__(self):
         return str(self.inorder())
