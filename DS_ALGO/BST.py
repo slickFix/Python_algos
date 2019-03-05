@@ -125,3 +125,7 @@ if __name__ == '__main__':
     bst.delete(3)
     
     print(bst)
+    
+    bst.delete(14)
+    
+    print(bst)
