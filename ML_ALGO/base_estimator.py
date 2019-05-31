@@ -56,3 +56,18 @@ class BaseEstimator(object):
                 
         self.y = y
         
+    def fit(self,x,y=None):
+        self._setup_input(x,y)
+        
+    def predict(self,x,y=None):
+        
+        if not isinstance(x,np.ndarray):
+            x = np.array(x)
+            
+        if self.x is not None and not self.fit_required:
+            return self._predict(x)
+        else:
+            raise ValueError("Either input is null or fit is not called or both")
+            
+    def _predict(self,x):
+        raise NotImplementedError()
