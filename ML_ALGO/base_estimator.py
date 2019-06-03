@@ -67,7 +67,7 @@ class BaseEstimator(object):
         if self.x is not None and not self.fit_required:
             return self._predict(x)
         else:
-            raise ValueError("Either input is null or fit is not called or both")
+            raise ValueError("Either input is null or fit is not called or both..")
             
     def _predict(self,x):
         raise NotImplementedError()
