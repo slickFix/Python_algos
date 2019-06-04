@@ -65,10 +65,20 @@ class BaseEstimator(object):
         if not isinstance(x,np.ndarray):
             x = np.array(x)
             
-        if self.x is not None and not self.fit_required:
+        if self.x is not None or not self.fit_required:
             return self._predict(x)
         else:
-            raise ValueError("Either input is null or fit is not called or both..")
+            '''  
+            T(x=1,2,3)  T (fit_req = F)
+            T(x=1,2,3)  F (fit req = T)
+            F(x=None)   T (fit req = F)
+            F(x=None)   F (fit req = T)
+
+            executes only when x=none and fit_req = T => fit not called.
+            as by default fit_req = T i.e. 3rd case is not possible
+
+            '''
+            raise ValueError("Call fit before predict")
             
     def _predict(self,x):
         raise NotImplementedError()
