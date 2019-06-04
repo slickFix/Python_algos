@@ -132,4 +132,16 @@ class BasicRegression_Wrapper(BaseEstimator):
                 break
         
         return theta,errors
-        
+
+
+class LinearRegression(BasicRegression_Wrapper):
+    '''
+    Linear Regression with gradient descent as optimizer
+    '''
+    
+    def _loss(self,wt):
+        loss = self._calc_cost(np.dot(self.x,wt),self.y)
+        return self._add_penalty(loss,wt)
+    
+    def init_cost(self):
+        self._calc_cost = mean_squared_error
