@@ -145,3 +145,24 @@ class LinearRegression(BasicRegression_Wrapper):
     
     def init_cost(self):
         self._calc_cost = mean_squared_error
+
+class LogisticRegression(BasicRegression_Wrapper):
+    '''
+    Binary Logistic Regression with gradient descent as optimizer
+    '''
+    
+    def init_cost(self):
+        self._calc_cost = binary_crossentropy
+        
+    def _loss(self,wt):
+        loss = self._calc_cost(self.sigmoid(np.dot(self.x,wt)),self.y)
+        return self._add_penalty(loss,wt)
+    
+    @staticmethod
+    def sigmoid(x):
+        return 0.5 * (np.tanh(0.5*x)+1)
+    
+    def _predict(self,x=None):
+        x = self._add_intercept(x)
+        return self.sigmoid(np.dot(x,self.theta))
+        
