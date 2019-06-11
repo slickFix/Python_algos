@@ -38,5 +38,36 @@ class PCA(BaseEstimator):
         self.components = None
         self.mean = None
         
+    def fit(self,x,y=None):
+        self.mean = np.mean(x,axis=0)
+        self._decompose(x)
         
+    
+    def _decompose(self,x):
+        
+        # mean centering
+        x = x.copy() # so that this copy of x doesn't alter any other x
+        x -= self.mean
+        
+        if self.solver == 'svd':
+            _,s,Vh = svd(x,full_matrices=True)
+        
+        elif self.solver == 'eigen':
+            s,Vh = np.linalg.eig(np.cov(x.T))
+            Vh = Vh.T
+            
+        s_squared = s ** 2
+        variance_ratio = s_squared/(s_squared).sum()
+        logging.info('Explained variance ratio: %s' % (variance_ratio[0:self.n_components] ))
+        self.components = Vh[0:self.n_components]
+        
+    def transform(self,x):
+        x = x.copy()
+        x-= self.mean
+        
+        return  np.dot(x,self.components.T)
+    
+    def _predict(self,x=None):
+        
+        return self.transform(x)
 
