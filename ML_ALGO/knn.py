@@ -59,4 +59,19 @@ class KNNBase(BaseEstimator):
         
         return self.aggregate(neighbours_targets)
     
+class KNNClassifier(KNNBase):
+    
+    '''
+    Nearest neigbors classfier
+    '''
+    
+    def aggregate(self,neighbors_targets):
+        ''' 
+        Return the most common target labesl
+        '''
+        
+        most_common_label = Counter(neighbors_targets).most_common(1)[0][0]
+        return most_common_label
+    
+    
 
