@@ -65,13 +65,25 @@ class KNNClassifier(KNNBase):
     Nearest neigbors classfier
     '''
     
-    def aggregate(self,neighbors_targets):
+    def aggregate(self,neighbours_targets):
         ''' 
         Return the most common target labesl
         '''
         
-        most_common_label = Counter(neighbors_targets).most_common(1)[0][0]
+        most_common_label = Counter(neighbours_targets).most_common(1)[0][0]
         return most_common_label
     
     
-
+    
+class KNNRegressor(KNNBase):
+    
+    '''
+    Nearest neigbors regressor
+    '''
+    
+    def aggregate(self,neighbours_targets):
+        '''
+        Return the mean of all the targets
+        '''
+        
+        return np.mean(neighbours_targets)
