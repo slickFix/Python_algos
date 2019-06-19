@@ -37,12 +37,20 @@ class NaiveBayesClassifier(BaseEstimator):
             
             self._prior = x_c.shape[0]/float(x.shape[0])
             
-    def predict(self,x,y=None):
+    def _predict(self,x,y=None):
         
-        predictions = np.apply_along_axis(self.predict_each_row,1,x)
+        predictions = np.apply_along_axis(self._predict_each_row,1,x)
+        
+        # normalizing the probabilities
+        
+        ex = np.exp(predictions)
+        
+        norm_prob = ex/np.sum(ex,axis=1,keepdims=True)
+        
+        return norm_prob
             
     
-    def predict_each_row(self,x):
+    def _predict_each_row(self,x):
         
         ''' predicting the log likelihood '''
         
@@ -51,7 +59,7 @@ class NaiveBayesClassifier(BaseEstimator):
         for cl in range(self.n_classes):
             prior_prob = np.log(self._prior[cl])      
             
-            likelihood_prob = np.log(self._pdf(x,y)).sum()
+            likelihood_prob = np.log(self._pdf(x,cl)).sum()
             
             # We are adding probabilities as multiplicative prob becomes additive after log
             total_prob = prior_prob + likelihood_prob
@@ -59,3 +67,13 @@ class NaiveBayesClassifier(BaseEstimator):
             output.append(total_prob)
         
         return output
+    
+    def _pdf(self,x,y):
+        
+        mean = self._mean[y]
+        var = self._var[y]
+        
+        numerator = np.exp(-(x-mean)**2 / (2*var))
+        denominator  = np.sqrt(2*np.pi * var)
+        
+        return numerator/denominator
