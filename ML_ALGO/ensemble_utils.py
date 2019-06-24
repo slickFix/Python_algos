@@ -9,9 +9,17 @@ Created on Thu Jun 20 11:41:55 2019
 import numpy as np
 
 def split_target(x,y,value):
+    ''' Random forest uses split_target'''
     
-    left_mask = x<value
-    right_mask = x >= value
+    # for numerical value
+    if value.dtype == float: 
+        left_mask = x<value
+        right_mask = x >= value
+    
+    # for categorical values
+    else :
+        left_mask = (x != value)
+        right_mask = (x == value)
     
     return y[left_mask],y[right_mask]
 
@@ -21,11 +29,23 @@ def get_split_mask(x,column,value):
     getting split mask for a particular column
     '''
     
-    left_mask = x[:,column]<value
-    right_mask = x[:,column]>=value
+    # for numerical value
+    if value.dtype == float:
+        left_mask = x[:,column]<value
+        right_mask = x[:,column]>=value
+    
+    # for categorical values
+    else:
+        left_mask = x[:,column] != value
+        right_mask = x[:,column] == value
+        
     return left_mask,right_mask
 
 def split_dataset(x,target,column,value,return_x=True):
+    
+    '''
+    gradient boosting uses split_dataset
+    '''
     
     left_mask , right_mask = get_split_mask(x,column,value)
     
