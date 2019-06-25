@@ -41,7 +41,18 @@ class Tree():
     def is_terminal(self):
         return not bool(self.left_child and self.right_child)
     
-    
+    def _find_splits(self,x):
+        ''' Finding all possible splits for numerical column '''
+        split_values = set()
+        
+        # getting all the uninque values
+        unique = list(np.unique(x))
+        
+        for i in range(1,len(unique)):
+            avg = (unique[i]+unique[i-1])/2.0
+            split_values.add(avg)
+            
+        return list(split_values)
     
     def _find_best_split(self,x,target,n_features):
         '''
