@@ -13,7 +13,7 @@ from scipy import stats
 
 from base_estimator import BaseEstimator
 
-from ensemble_utils import split_dataset, split_target
+from ensemble_utils import split_dataset, split_target,xgb_criterion
 
 
 random.seed(111)

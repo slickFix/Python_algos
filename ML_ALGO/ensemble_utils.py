@@ -8,6 +8,18 @@ Created on Thu Jun 20 11:41:55 2019
 
 import numpy as np
 
+def xgb_criterion(y,left,right,loss):
+    ''' used by decision_tree which is used by gradient boosting class '''
+    
+    left = loss.gain(left['actual'],left['y_pred'])
+    right = loss.gain(right['actual'],right['y_pred'])
+    initial = loss.gain(y['actual'],y['y_pred'])
+    
+    gain = left+right -initial
+    
+    return gain
+
+
 def split_target(x,y,value):
     ''' Random forest uses split_target'''
     
@@ -26,7 +38,7 @@ def split_target(x,y,value):
 
 def get_split_mask(x,column,value):
     '''
-    getting split mask for a particular column
+    getting split mask for a particular column used by split_dataset by XGB
     '''
     
     # for numerical value
