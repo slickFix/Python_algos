@@ -186,5 +186,22 @@ class Tree():
                 # Probability for classification task
                 self.outcome = stats.itemfreq(target['y'])[:,1]/float(target['y'].shape[0])
                 
+    def predict_row(self,row):
+        ''' predicting single row. '''
+        
+        if not self.is_terminal:
+            if row[self.column_index] < self.threshold:
+                return self.left_child.predict_row(row)
+            
+            else:
+                return self.right_child.predict_row(row)
+        
+        return self.outcome
     
+    def predict(self,x):
+        result = np.zeros(x.shape[0])
+        
+        for i in range(x.shape[0]):
+            result[i] = self.predict_row(x[i,:])
+        return result
             
