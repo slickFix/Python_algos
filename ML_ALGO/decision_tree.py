@@ -169,5 +169,22 @@ class Tree():
         except AssertionError:
             self._calculate_leaf_value(target)
             
+    def _calculate_leaf_value(self,target):
+        ''' Find optimal value for leaf '''
+        
+        # For gradient boosting 
+        if self.loss is not None:
+            self.outcome = self.loss.approximate(target['actual'],target['y_pred'])
+        
+        # For random forest
+        else:
+            if self.regression:
+                # mean value for regression task
+                self.outcome= np.mean(target['y'])
                 
+            else:
+                # Probability for classification task
+                self.outcome = stats.itemfreq(target['y'])[:,1]/float(target['y'].shape[0])
+                
+    
             
