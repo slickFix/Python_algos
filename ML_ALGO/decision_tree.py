@@ -94,3 +94,80 @@ class Tree():
                     max_col, max_val, max_gain = column,value,gain
                     
         return max_col,max_val,max_gain
+    
+    
+    def train(self,x,target,max_features = None,min_samples_split = 10,max_depth=None,minimum_gain=0.01,loss=None):
+        
+        """Build decision tree from the training set.
+        
+        Parameters:
+        --------------------------------------------
+        
+        x: array-like 
+            Feature dataset.
+        
+        target: dictionary or array-like 
+            target values.
+            
+        max_features: int or None
+            The number of features to look for when considering the best split.
+            
+        min_samples_split: int
+            The minimum number of samples required to split an internal node.
+            
+        max_depth: int 
+            Maximum depth of the tree.
+            
+        minimum_gain: float, default 0.01
+            Minimum gain required for splitting.
+        
+        loss: function, default None
+            Loss function for gradient boosting.
+            
+        """
+        
+        if not isinstance(target,dict):
+            target  =  {'y':target}
+            
+        # Loss for gradient boosting
+        if loss is not None:
+            self.loss = loss
+            
+        try:
+            
+            # Exit condition for the decision tree
+            assert (x.shape[0] > min_samples_split)
+            assert (max_depth>0)
+            
+            if max_features is None:
+                max_features = x.shape[1] 
+                
+            column,value,gain = self._find_best_split(x,target,max_features)
+            
+            assert gain is not None
+            
+            if self.regression:
+                assert (gain != 0)        
+            else:
+                assert (gain > minimum_gain)                
+            
+            self.column_index = column
+            self.threshold = value
+            self.impurity = gain
+            
+            # splitting the datset
+            left_x,right_x,left_target,right_target = split_dataset(x,target,column,value)
+            
+            # grow left and right child
+            
+            self.left_child = Tree(self.regression,self.criterion)
+            self.left_child.train(left_x,left_target,max_features,min_samples_split,max_depth-1,minimum_gain,loss)
+            
+            self.right_child = Tree(self.regression,self.criterion)
+            self.right_child.train(right_x,right_target,max_features,min_samples_split,max_depth-1,minimum_gain,loss)
+            
+        except AssertionError:
+            self._calculate_leaf_value(target)
+            
+                
+            
