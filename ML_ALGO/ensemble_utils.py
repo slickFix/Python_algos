@@ -8,6 +8,29 @@ Created on Thu Jun 20 11:41:55 2019
 
 import numpy as np
 
+from scipy import stats
+
+
+def calc_entropy(p):
+    
+    # converts values to probability
+    p = np.bincount(p)/float(p.shape[0])
+    
+    # neglects 0 probabily
+    ent = stats.entropy(p)
+    
+    if ent == -float('inf'):
+        return 0.0
+    
+    return ep
+
+def information_gain(y,splits):
+    # Summation of entropy of each split node
+    splits_entropy = sum([calc_entropy(split) * (float(split.shape[0])/y.shape[0]) for split in splits])
+    
+    return calc_entropy(y) - splits_entropy
+
+
 def xgb_criterion(y,left,right,loss):
     ''' used by decision_tree which is used by gradient boosting class '''
     
