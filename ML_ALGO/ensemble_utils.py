@@ -22,7 +22,7 @@ def calc_entropy(p):
     if ent == -float('inf'):
         return 0.0
     
-    return ep
+    return ent
 
 def information_gain(y,splits):
     # Summation of entropy of each split node
