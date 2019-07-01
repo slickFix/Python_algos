@@ -18,7 +18,7 @@ from ensemble_utils import split_dataset, split_target,xgb_criterion
 
 random.seed(111)
 
-class Tree():
+class Decision_tree():
     
     ''' Recursive implementation of decision tree '''
     
@@ -160,10 +160,10 @@ class Tree():
             
             # grow left and right child
             
-            self.left_child = Tree(self.regression,self.criterion)
+            self.left_child = Decision_tree(self.regression,self.criterion)
             self.left_child.train(left_x,left_target,max_features,min_samples_split,max_depth-1,minimum_gain,loss)
             
-            self.right_child = Tree(self.regression,self.criterion)
+            self.right_child = Decision_tree(self.regression,self.criterion)
             self.right_child.train(right_x,right_target,max_features,min_samples_split,max_depth-1,minimum_gain,loss)
             
         except AssertionError:
