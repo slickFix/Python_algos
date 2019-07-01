@@ -24,6 +24,17 @@ def calc_entropy(p):
     
     return ent
 
+
+def mse_criterion(y,splits):
+    
+    ''' find the mse score of the split '''
+    y_mean = np.mean(y)
+    
+    # we are taking sum not mean of squarred errors as we finally normalize it with prob factor
+    # there should be only one normalising factor i.e. either mean or prob factor not both
+    
+    return sum([ np.sum((split-y_mean)**2) * float(split.shape[0]/y.shape[0]) for split in splits])
+
 def information_gain(y,splits):
     # Summation of entropy of each split node
     splits_entropy = sum([calc_entropy(split) * (float(split.shape[0])/y.shape[0]) for split in splits])
