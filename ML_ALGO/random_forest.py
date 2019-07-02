@@ -43,4 +43,24 @@ class Random_forest(BaseEstimator):
         self.min_samples_split = min_samples_split
         self.d_tree = []
         
+    def fit(self,x,y=None):
+        self._setup_input(x,y)
+        
+        if self.max_features is None :
+            self.max_features = int(np.sqrt(x.shape[1]))
+        else:
+            assert self.max_features < x.shape[1]
+        
+        self._train()
+    
+    def train(self):
+        
+        for tree in self.d_tree:
+            tree.train(self.x,self.y,max_features = self.max_features,max_depth = self.max_depth,min_samples_split = self.min_samples_split)
+            
+    def predict(self,x=None):
+        
+        raise NotImplementedError()
+        
+    
         
