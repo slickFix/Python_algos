@@ -79,4 +79,19 @@ class Random_forest_classifier(Random_forest):
         for _ in range(n_estimators):
             self.d_tree.append(Decision_tree(criterion=self.criterion))
         
+    def _predict(self,x=None):
         
+        n_classes = np.unique(self.y).shape[0]
+        
+        predictions = np.zeros(x.shape[0],n_classes)
+        
+        for row in range(x.shape[0]):
+            row_pred = np.zeros(n_classes)
+            
+            for tree in self.d_tree:
+                row_pred+= tree.predict_row(x[row,:])
+                
+            row_pred /= self.n_estimators
+            predictions[row,:] = row_pred
+        return predictions
+            
