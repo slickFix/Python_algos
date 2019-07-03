@@ -62,5 +62,21 @@ class Random_forest(BaseEstimator):
         
         raise NotImplementedError()
         
+class Random_forest_classifier(Random_forest):
     
+    def __init__(self,n_estimators=10,max_features=None,max_depth = None,min_samples_split=10,criterion = 'entropy'):
+        
+        super(Random_forest_classifier,self).__init__(max_features =max_features,criterion=criterion,
+             max_depth = max_depth,min_samples_split = min_samples_split,
+             n_estimators = n_estimators)
+        
+        if criterion == 'entropy':
+            self.criterion = information_gain
+        else:
+            raise ValueError()
+            
+        # Initializing empty trees
+        for _ in range(n_estimators):
+            self.d_tree.append(Decision_tree(criterion=self.criterion))
+        
         
