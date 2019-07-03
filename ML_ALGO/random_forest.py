@@ -83,7 +83,7 @@ class Random_forest_classifier(Random_forest):
         
         n_classes = np.unique(self.y).shape[0]
         
-        predictions = np.zeros(x.shape[0],n_classes)
+        predictions = np.zeros((x.shape[0],n_classes))
         
         for row in range(x.shape[0]):
             row_pred = np.zeros(n_classes)
@@ -112,5 +112,11 @@ class Random_forest_Regressor(Random_forest):
         for _ in range(self.n_estimators):
             self.d_tree.append(Decision_tree(criterion=self.criterion,regression=True))
             
-    
+    def _predict(self,x=None):
+        predictions = np.zeros((x.shape[0],self.n_estimators))
+        
+        for i,tree in enumerate(self.d_tree):
+            predictions[:,i] = tree.predict(x)
+            
+        return predictions.mean(axis=1)
         
