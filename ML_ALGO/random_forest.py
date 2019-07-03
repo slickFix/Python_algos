@@ -94,4 +94,23 @@ class Random_forest_classifier(Random_forest):
             row_pred /= self.n_estimators
             predictions[row,:] = row_pred
         return predictions
+
+class Random_forest_Regressor(Random_forest):
+    
+    def __init__(self,n_estimators=10,max_features=None,max_depth = None,min_samples_split=10,criterion = 'mse'):
+        
+        super(Random_forest_Regressor,self).__init__(max_features =max_features,criterion=criterion,
+             max_depth = max_depth,min_samples_split = min_samples_split,
+             n_estimators = n_estimators)
+        
+        if criterion == 'mse':
+            self.criterion = mse_criterion
+        else:
+            raise ValueError()
+        
+        # Initializing empyt trees
+        for _ in range(self.n_estimators):
+            self.d_tree.append(Decision_tree(criterion=self.criterion,regression=True))
             
+    
+        
