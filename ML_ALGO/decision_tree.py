@@ -9,7 +9,7 @@ Created on Fri Jun 21 16:36:21 2019
 import random
 import numpy as np
 from scipy import stats
-
+from collections import Counter
 
 from base_estimator import BaseEstimator
 
@@ -183,8 +183,20 @@ class Decision_tree():
                 self.outcome= np.mean(target['y'])
                 
             else:
+                
+                ''' The below method would give wrong result for cases where
+                    some of the class is missing in the child node (splitted value)'''
+                #self.outcome = stats.itemfreq(target['y'])[:,1]/float(target['y'].shape[0])
+                
+                
                 # Probability for classification task
-                self.outcome = stats.itemfreq(target['y'])[:,1]/float(target['y'].shape[0])
+                unique_classes = np.unique(self.y)
+                class_count_in_child_node = Counter(target['y'])
+                
+                # Counter returns 0 for key not found
+                result = [class_count_in_child_node[val] for val in unique_classes]
+                
+                self.outcome = result/float(target['y'].shape[0])
                 
     def predict_row(self,row):
         ''' predicting single row. '''
