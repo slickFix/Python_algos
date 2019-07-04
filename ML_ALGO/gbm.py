@@ -49,4 +49,17 @@ class Loss:
         denominator = (self.hess(predicted,actual).sum() + self.regularization)
         
         return 0.5 * (numerator/denominator)
+    
+class LeastSquareLoss(Loss):
+    ''' Least square loss used for gbm regression'''
+    
+    def grad(self, predicted,actual):
+        return actual - predicted
+    
+    def hess (self, predicted, actual):
+        
+        return np.ones_like(actual)
+    
+    
+    
         
