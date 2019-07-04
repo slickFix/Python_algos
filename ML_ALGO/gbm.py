@@ -61,5 +61,21 @@ class LeastSquareLoss(Loss):
         return np.ones_like(actual)
     
     
+class LogisticLoss(Loss):
+    ''' Logistic Loss used for gbm classification '''
     
+    def grad(self,predicted,actual):
+        
+        return actual * expit(-actual*predicted)
+    
+    def hess(self,predicted,actual):
+        
+        expits = expit(predicted)
+        return expits * (1-expits)
+    
+    
+    def transform(self,output):
+         # Apply logistic sigmoid function to the output
+         
+         return expit(output)
         
