@@ -16,7 +16,11 @@ from decision_tree import Decision_tree
 from scipy.special import expit
 
 class Loss:
-    ''' Base class for loss function'''
+    ''' 
+        Base class for loss function.
+        These loss functions are used for evaluations of the gbm split.
+    
+    '''
     
     def __init__(self,regularization=1.0):
         self.regularization = regularization
