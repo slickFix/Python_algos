@@ -83,3 +83,17 @@ class LogisticLoss(Loss):
          
          return expit(output)
         
+class GradientBoosting(BaseEstimator):
+    
+    ''' Base class for GradientBoosting Trees using Taylor's expansion approximation (same as XgBoost) '''
+    
+    def __init__(self,n_estimators,max_depth=2,max_features=10,min_samples_split=10,learning_rate=0.1):
+        self.n_estimators = n_estimators
+        self.max_depth = max_depth
+        self.max_features = max_features
+        self.min_samples_split = min_samples_split
+        self.learning_rate = learning_rate
+        self.d_trees = []
+        self.loss = None
+    
+        
