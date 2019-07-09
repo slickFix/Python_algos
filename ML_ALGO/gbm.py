@@ -96,4 +96,41 @@ class GradientBoosting(BaseEstimator):
         self.d_trees = []
         self.loss = None
     
+    def fit(self,x,y=None):
+        self._setup_input(x,y)
+        self.y_mean = np.mean(y)
+        self._train()
+    
+    def _train(self):
         
+        y_pred = np.zeros(self.n_samples,np.float32)
+        
+        for n in range(self.n_estimators):
+            
+            residuals = self.loss.grad(y_pred,self.y)
+            
+            d_tree = Decision_tree(regression=True,criterion=mse_criterion)
+            
+            # passing the target values to the tree learner
+            
+            targets = {
+                    # residual values
+                    'y':residuals,
+                    
+                    # Actual target value
+                    
+                    'actual':self.y,
+                    
+                    # Predictions from previous step
+                    
+                    'y_pred':y_pred
+                    }
+        
+        
+            d_tree.train(self,targets,max_features=self.max_features,max_depth=self.max_depth,
+                         min_samples_split=self.min_samples_split,loss= self.loss)
+            
+            predictions = d_tree.predict(self.x)
+            y_pred +=self.learning_rate*predictions
+            self.d_trees.append(d_tree)
+    
