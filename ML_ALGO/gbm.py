@@ -144,3 +144,11 @@ class GradientBoosting(BaseEstimator):
     
     def predict(self,x=None):
         return self.loss.transform(self._predict(x))
+    
+    
+class GradientBoostingRegressor(GradientBoosting):
+    
+    def fit(self,x,y=None):
+        self.loss = LeastSquareLoss
+        super(GradientBoostingRegressor,self).fit(x,y)
+        
