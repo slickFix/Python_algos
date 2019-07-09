@@ -134,3 +134,13 @@ class GradientBoosting(BaseEstimator):
             y_pred +=self.learning_rate*predictions
             self.d_trees.append(d_tree)
     
+    def _predict(self,x):
+        y_pred = np.zeros(self.x.shape[0],np.float32)
+        
+        for d_tree in self.d_trees:
+            y_pred +=  self.learning_rate * d_tree.predict(x)
+            
+        return y_pred
+    
+    def predict(self,x=None):
+        return self.loss.transform(self._predict(x))
