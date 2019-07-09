@@ -152,3 +152,9 @@ class GradientBoostingRegressor(GradientBoosting):
         self.loss = LeastSquareLoss
         super(GradientBoostingRegressor,self).fit(x,y)
         
+class GradientBoostingClassifier(GradientBoosting):
+    
+    def fit(self,x,y=None):
+        
+        self.loss = LogisticLoss
+        super(GradientBoostingClassifier,self).fit(x,y)
