@@ -32,3 +32,18 @@ class Poly:
     def __rept__(self):
         
         return 'Polynomial Kernel'
+    
+class RBF:
+    
+    def __init__(self,gamma = 0.1):
+        self.gamma = gamma
+        
+    def __call__(self,x,y):
+        x = np.atleast_2d(x)
+        y = np.atleast_2d(y)
+        
+        return np.exp(-self.gamma * dist.cdist(x,y) ** 2).flatten()
+    
+    def __repr__(self):
+        
+        return 'RBF kernel'
