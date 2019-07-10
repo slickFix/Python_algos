@@ -20,3 +20,15 @@ class Linear:
     def __repr__(self):
         return 'Linear Kernel'
 
+class Poly:
+    
+    def __init__(self,degree = 2):
+        self.degree = 2
+        
+    def __call__(self,x,y):
+        
+        return np.dot(x,y.T)** self.degree
+    
+    def __rept__(self):
+        
+        return 'Polynomial Kernel'
