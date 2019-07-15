@@ -47,7 +47,30 @@ class SVM(BaseEstimator):
             self.kernel = kernel
             
         self.b = 0
+        
+        # K is a matrix which stores dot product of all vectors 
+        # K[1,1] is dot product of m1 vector with itself
+        # k[:,1] is dot product of m1 vector with all other vectors        
         self.K = None
+        
+        # It is the list of alphas which comes zero for non support vector
         self.alpha = None
+        
+    def fit(self,x,y=None):
+        
+        self._setup_input(x,y)
+        
+        self.K = np.zeros((self.n_samples,self.n_samples))
+        
+        # calculating the vector multiplication(dot) of all vectors
+        
+        for i in range(self.n_samples):
+            self.K[:,i] = self.kernel(self.x,self.x[i,:])        
             
+        self.alpha = np.zeros(self.n_samples)
+        self.sv_idx = np.arange(0,self.n_samples)
+        
+        self._train()
+    
+    
         
