@@ -50,7 +50,8 @@ class SVM(BaseEstimator):
         
         # K is a matrix which stores dot product of all vectors 
         # K[1,1] is dot product of m1 vector with itself
-        # k[:,1] is dot product of m1 vector with all other vectors        
+        # k[:,1] is dot product of m1 vector with all other vectors  
+        # k[i,j] is dot product of mi vector with mj vector
         self.K = None
         
         # It is the list of alphas which comes zero for non support vector
@@ -72,5 +73,14 @@ class SVM(BaseEstimator):
         
         self._train()
     
+    # Utility functions
     
+    def random_index(self,i):
+        ''' Used for calculation of random index for alpha '''
+        z = i 
+        while z==i:
+            z = np.random.randint(0,self.n_samples)        
+        return z
+        
+        
         
