@@ -72,13 +72,11 @@ class SVM(BaseEstimator):
         self.sv_idx = np.arange(0,self.n_samples)
         
         self._train()
-        
-    
     
     def _predict_row(self,x):
         
         '''
-        k_v : is m*1 array formed after dot product of test(set) vector with all
+        k_v : is m*1 array formed after dot product of test(t) vector with all
               train(set) vector
             
         '''
@@ -138,5 +136,7 @@ class SVM(BaseEstimator):
         
         return alpha
     
-    
+    def _error(self,i):
+        ''' Error for single example '''
+        return self._predict_row(self.x[i]) - self.y[i]
         
