@@ -98,5 +98,13 @@ class SVM(BaseEstimator):
             
         return L,H
     
-    
+    def _clip(self,alpha,L,H):
+        
+        if alpha > H:
+            alpha = H
+        
+        if alpha < L:
+            alpha = L
+        
+        return alpha
         
