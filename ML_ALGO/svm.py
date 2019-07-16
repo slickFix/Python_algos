@@ -73,7 +73,7 @@ class SVM(BaseEstimator):
         
         self._train()
         
-        
+    
     
     def _predict_row(self,x):
         
@@ -84,6 +84,13 @@ class SVM(BaseEstimator):
         '''
         k_v = self.kernel(self.x[self.sv_idx],x)
         
+        ''' 
+        1st arg of np.dot() does the element wise multiplication of alpha with y
+        2nd arg of np.dot() is explained above 
+        
+        np.dot() does the element wise multiplication of (alpha,y)i[->m] with (k_v)i[->m] 
+        and sums them.
+        '''        
         return np.dot((self.alpha[self.sv_idx] * self.y[self.sv_idx]).T , k_v.T) + self.b
     
     def _predict(self,x=None):
