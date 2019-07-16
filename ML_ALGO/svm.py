@@ -50,7 +50,7 @@ class SVM(BaseEstimator):
         
         # K is a matrix which stores dot product of all vectors 
         # K[1,1] is dot product of m1 vector with itself
-        # k[:,1] is dot product of m1 vector with all other vectors  
+        # k[:,4] is dot product of m4 vector with all other vectors  
         # k[i,j] is dot product of mi vector with mj vector
         self.K = None
         
@@ -82,5 +82,21 @@ class SVM(BaseEstimator):
             z = np.random.randint(0,self.n_samples)        
         return z
         
+    def _find_bounds(self,i,j):
         
+        """
+        Find L and H such that L <= alpha <= H.
+        Also, alpha must satisfy the constraint 0 <= αlpha <= C.        
+        """
+        
+        if self.y[i] != self.y[j]:
+            L = max(0,self.alpha[j]-self.alpha[i])
+            H = min(self.C,self.C - self.alpha[i] + self.alpha[j])
+        else:
+            L = max(0,self.alpha[i] + self.alpha[j] - self.C)
+            H = min(self.C,self.alpha[i] +  self.alpha[j])
+            
+        return L,H
+    
+    
         
