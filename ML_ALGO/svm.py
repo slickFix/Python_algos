@@ -86,7 +86,14 @@ class SVM(BaseEstimator):
         
         return np.dot((self.alpha[self.sv_idx] * self.y[self.sv_idx]).T , k_v.T) + self.b
     
-    
+    def _predict(self,x=None):
+        n = x.shape[0]
+        result = np.zeros(n)
+        
+        for i in range(n):
+            result[i] = np.sign(self._predict(x[i,:]))
+        
+        return result
     
     
     # Utility functions
