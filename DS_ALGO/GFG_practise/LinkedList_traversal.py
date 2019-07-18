@@ -6,7 +6,7 @@ class Node:
 
 class Linked_list:
     '''
-    Assuming this class will be called either after the 1st node object is crated and passed:
+    Assuming this class will be called either after the 1st node object is created and passed:
 
     Linked_list(1st_node,1st_node)
 
