@@ -24,6 +24,8 @@ class LinkedList:
 
     def add_first(self,new_data):
 
+        # changing the reference of the head node
+
         new_node = Node(new_data)
 
         new_node.next_node = self.head
@@ -32,6 +34,7 @@ class LinkedList:
 
     def add_after(self,data,new_data):
 
+        # moving curr_node reference to the data node
         curr_node = self.head
 
         if curr_node.data == data:
