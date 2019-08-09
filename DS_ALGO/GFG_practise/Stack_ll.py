@@ -8,20 +8,14 @@ class Stack:
 
     def __init__(self):
         self.tail  = None
-        self.head = None
 
     def is_empty(self):
 
-        if self.tail is None and self.head is None:
+        if self.tail is None :
             return True
         else:
             return False
 
-    def one_node(self):
-        if self.head == self.tail:
-            return True
-        else:
-            return False
 
     def peek(self):
 
@@ -42,8 +36,7 @@ class Stack:
 
         new_node = Node(data)
 
-        if self.tail is None and self.head is None:
-            self.head = new_node
+        if self.tail is None :
             self.tail = new_node
 
         else:
@@ -54,15 +47,6 @@ class Stack:
 
         if self.is_empty():
             print('Pop operation is not possible as stack is empty')
-            return
-
-        if self.one_node():
-            ret_data = self.tail.data
-            self.tail = None
-            self.head = None
-
-            print(ret_data, ' item popped.')
-
             return
 
         else:
