@@ -51,7 +51,7 @@ class Random_forest(BaseEstimator):
         else:
             assert self.max_features < x.shape[1]
         
-        self._train()
+        self.train()
     
     def train(self):
         
