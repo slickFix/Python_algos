@@ -36,6 +36,8 @@ class Queue:
         self.front = (self.front +1) % self.capacity
         self.size -=1
 
+        return data
+
     def que_front(self):
         if self.is_empty():
             print("Queue is empty")
