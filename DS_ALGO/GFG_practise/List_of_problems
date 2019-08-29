@@ -1,0 +1,80 @@
+1)LinkedList_traversal
+https://www.geeksforgeeks.org/linked-list-set-1-introduction/
+2)LinkedList insertion
+https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
+3)LinkedList deletino
+https://www.geeksforgeeks.org/linked-list-set-3-deleting-node/
+4)Count_LL_nodes
+https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/
+5)Swap_nodes
+https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
+6) Reverse_ll
+https://practice.geeksforgeeks.org/problems/reverse-a-linked-list/1
+7) Merge_ll
+https://www.geeksforgeeks.org/merge-two-sorted-linked-lists/
+8) Reverse_k_ll
+https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/
+9) Loop_ll
+https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
+10) Rotate_ll
+https://www.geeksforgeeks.org/rotate-a-linked-list/
+11) C_ll
+https://www.geeksforgeeks.org/circular-singly-linked-list-insertion/
+12) C_ll_split
+https://www.geeksforgeeks.org/split-a-circular-linked-list-into-two-halves/
+13) Sorted_c_ll
+https://www.geeksforgeeks.org/sorted-insert-for-circular-linked-list/
+14) Doubly_ll
+https://www.geeksforgeeks.org/doubly-linked-list/
+15) Doubly_ll_delete
+https://www.geeksforgeeks.org/delete-a-node-in-a-doubly-linked-list/
+16) Doubly_ll_reverse
+https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
+17) Doubly_ll_merge_sort
+https://www.geeksforgeeks.org/merge-sort-for-doubly-linked-list/
+18) Stack_array
+https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
+19) Stack_ll
+https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
+20) Stack_infix_postfix
+https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/
+21) Stack_postfix_eval
+https://www.geeksforgeeks.org/stack-set-4-evaluation-postfix-expression/
+22) Stacks_2_array
+https://www.geeksforgeeks.org/implement-two-stacks-in-an-array/
+23) Balance_parentheses
+https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/
+24) Next_greater_elements
+https://www.geeksforgeeks.org/next-greater-element/
+25) Stack_reverse_recursion
+https://www.geeksforgeeks.org/reverse-a-stack-using-recursion/
+26) Stack_sort
+https://www.geeksforgeeks.org/sort-a-stack-using-recursion/
+27) Stock_span
+https://www.geeksforgeeks.org/the-stock-span-problem/
+28) Stack_get_min
+https://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/
+29) Stack_using_q
+https://www.geeksforgeeks.org/implement-stack-using-queue/
+30) Stack_k_array
+https://www.geeksforgeeks.org/efficiently-implement-k-stacks-single-array/
+31) Queue_array
+https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/
+32) Queue_ll
+https://www.geeksforgeeks.org/queue-set-2-linked-list-implementation/
+33) Queue_priority
+https://www.geeksforgeeks.org/heap-queue-or-heapq-in-python/
+34) Deque
+https://www.geeksforgeeks.org/implementation-deque-using-circular-array/
+35) Q_using_stack
+https://www.geeksforgeeks.org/queue-using-stacks/
+36) Petrol_pump_c
+https://www.geeksforgeeks.org/find-a-tour-that-visits-all-stations/
+37) Sliding_window_max_k
+https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
+38) Generate_binary
+https://practice.geeksforgeeks.org/problems/generate-binary-numbers/0
+39) Queue_k_array
+https://www.geeksforgeeks.org/efficiently-implement-k-queues-single-array/
+40) DFT_tree
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
